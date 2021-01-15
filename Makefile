@@ -19,7 +19,7 @@ COMPILER ?= gcc
 #COMPILER ?= clang
 
 ifeq ($(COMPILER),gcc)
-	CFLAGS += -fopenmp -Wno-deprecated -std=c++14 -pthread -Wno-invalid-offsetof
+	CFLAGS +=  -Xpreprocessor -fopenmp -Wno-deprecated -std=c++14 -pthread -Wno-invalid-offsetof  -I/usr/local/include -L/usr/local/lib -I/usr/local/Cellar
 	LFLAGS += -lgomp -lstdc++ -lpthread
 else
 # 	CFLAGS += -fopenmp=libiomp5 -Wno-deprecated -Wno-write-strings -std=c++14 -Wno-invalid-offsetof
@@ -43,11 +43,11 @@ BIN = Bin/Linux/
 INCLUDE = .
 
 ifeq ($(COMPILER),gcc)
-	CC=gcc
-	CXX=g++
+CC=/usr/local/bin/gcc-10
+CXX=/usr/local/bin/g++-10
 else
-	CC=clang
-	CXX=clang++
+CC=clang
+CXX=clang++
 endif
 
 MD=mkdir
